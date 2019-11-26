@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Example</title>
+  </head>
+  <body>
+
+    <h1>Example</h1>
+    <p>Type first name and last name to see full name</p>
+    First name: <input handle-input="showFullName" type="text" id="first"><br>
+    Last name: <input handle-input="showFullName" type="text" id="last"><br>
+    <button handle-click="clear" type="button">Clear</button>
+    <div id="fullname"></div>
+
+    <script src="../src/handle-event.js"></script>
+    <script>
+        handleEvent('input', 'showFullName', function (e) {
+            var first = document.getElementById('first').value.toUpperCase()
+            var last = document.getElementById('last').value.toUpperCase()
+            document.getElementById('fullname').innerHTML = first + ' ' + last
+        })
+        handleEvent('click', 'clear', function (e) {
+            document.getElementById('first').value = ''
+            document.getElementById('last').value = ''
+            document.getElementById('fullname').innerHTML = ''
+        })
+    </script>
+    
+  </body>
+</html>
