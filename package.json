@@ -9,9 +9,9 @@
   "author": "John Egan",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^24.9.0"
+    "jest": "^25.2.6"
   },
-	"scripts": {
-		"test": "jest"
-	}
+  "scripts": {
+    "test": "jest"
+  }
 }
