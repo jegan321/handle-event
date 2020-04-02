@@ -13,17 +13,17 @@
     <button handle-click="clear" type="button">Clear</button>
     <div id="fullname"></div>
 
-    <script src="../src/handle-event.js"></script>
+    <script src="handle-event.js"></script>
     <script>
         handleEvent('input', 'showFullName', function (e) {
-            var first = document.getElementById('first').value.toUpperCase()
-            var last = document.getElementById('last').value.toUpperCase()
-            document.getElementById('fullname').innerHTML = first + ' ' + last
+            var first = document.getElementById('first').value.toUpperCase();
+            var last = document.getElementById('last').value.toUpperCase();
+            document.getElementById('fullname').innerHTML = first + ' ' + last;
         })
         handleEvent('click', 'clear', function (e) {
-            document.getElementById('first').value = ''
-            document.getElementById('last').value = ''
-            document.getElementById('fullname').innerHTML = ''
+            document.getElementById('first').value = '';
+            document.getElementById('last').value = '';
+            document.getElementById('fullname').innerHTML = '';
         })
     </script>
     

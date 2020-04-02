@@ -3,32 +3,37 @@
  * element that should trigger the handler needs to have an attribute following this
  * pattern: handle-{type}="{name}"
  * 
- * For example, an event handler can be added like this:
- * handleEvent('click', 'doSomething', function (event) {
- *   console.log('clicked element: ' + event.target)
- * })
- * 
- * And the HTML will have the corresponding attribute like this:
- * <button type="button" handle-click="doSomething">Click Me</button>
- * 
  * @param {String} type The type of event to handle, such as click or submit
  * @param {String} name A name for the handler
- * @param {Function} callback The function that will be called when the event happens
+ * @param {Function} callback The handler function that will be called
  */
 var handleEvent = function (type, name, callback) {
+
+  if (!handleEvent.handlers) {
+    handleEvent.handlers = [];
+  }
+
+  // If the event type hasn't been registered yet, set up event delegation
   if (!handleEvent.handlers[type]) {
-    handleEvent.handlers[type] = {}
+
+    handleEvent.handlers[type] = {};
+
+    // Add event listener that calls the handlers in the map if the
+    // element has the attribute handle-{type} or data-handle-{type}
     document.addEventListener(type, function (event) {
-      var attributeName = 'handle-' + type
-      if (event.target.matches('[' + attributeName + ']')) {
-        var name = event.target.getAttribute(attributeName)
-        var handler = handleEvent.handlers[type][name]
-        if (handler) {
-          handler(event)
+      var el = event.target;
+      var attributeName = 'handle-' + type;
+      if (el.hasAttribute(attributeName) || 
+          el.hasAttribute(attributeName = 'data-' + attributeName)) {
+        var handlerName = el.getAttribute(attributeName);
+        var handler = handleEvent.handlers[type][handlerName];
+        if (handler && typeof handler === 'function') {
+          handler(event);
         }
       }
     })
   }
-  handleEvent.handlers[type][name] = callback
+
+  // Register the callback as a handler 
+  handleEvent.handlers[type][name] = callback;
 }
-handleEvent.handlers = []
