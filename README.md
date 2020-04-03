@@ -3,8 +3,10 @@
 Tiny function that allows you to easily add event handlers to your HTML which use event delegation behind the scenes. 
 
 ## Set up
-Include the code in your project using a script tag or just copy and paste from handle-event.js. It's just one function.
-
+Include the code in your project using npm, a script tag or just copy and paste from handle-event.js. It's just one function.
+```bash
+npm install handle-event
+```
 ```html
 <script src="path/to/handle-event.js"></script>
 ```

@@ -1,3 +1,9 @@
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = global || self, global.handleEvent = factory());
+}(this, (function () { 'use strict';
+
 /**
  * Adds an event handler to be called using the event delegation technique. The HTML
  * element that should trigger the handler needs to have an attribute following this
@@ -37,3 +43,7 @@ var handleEvent = function (type, name, callback) {
   // Register the callback as a handler 
   handleEvent.handlers[type][name] = callback;
 }
+
+return handleEvent;
+
+})));
