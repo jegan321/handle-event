@@ -15,6 +15,9 @@
  */
 var handleEvent = function (type, name, callback) {
 
+  // This can be changed by the user
+  handleEvent.attributePrefix = 'handle-';
+
   if (!handleEvent.handlers) {
     handleEvent.handlers = [];
   }
@@ -28,9 +31,8 @@ var handleEvent = function (type, name, callback) {
     // element has the attribute handle-{type} or data-handle-{type}
     document.addEventListener(type, function (event) {
       var el = event.target;
-      var attributeName = 'handle-' + type;
-      if (el.hasAttribute(attributeName) || 
-          el.hasAttribute(attributeName = 'data-' + attributeName)) {
+      var attributeName = handleEvent.attributePrefix + type;
+      if (el.hasAttribute(attributeName)) {
         var handlerName = el.getAttribute(attributeName);
         var handler = handleEvent.handlers[type][handlerName];
         if (handler && typeof handler === 'function') {
